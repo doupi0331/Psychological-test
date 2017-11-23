@@ -230,7 +230,7 @@
                         <outletCollection property="selectionButtion" destination="xrg-RX-sg1" collectionClass="NSMutableArray" id="iEA-hP-n7i"/>
                         <outletCollection property="selectionButtion" destination="7AX-i2-z66" collectionClass="NSMutableArray" id="Gye-00-IBn"/>
                         <outletCollection property="selectionButtion" destination="pdf-GJ-add" collectionClass="NSMutableArray" id="uf7-uT-604"/>
-                        <segue destination="NAp-aB-0ij" kind="presentation" identifier="AnswerSegue" id="Gtn-EL-vNG"/>
+                        <segue destination="NAp-aB-0ij" kind="presentation" identifier="AnswerSegue" modalTransitionStyle="crossDissolve" id="Gtn-EL-vNG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SCk-Nf-rOp" userLabel="First Responder" sceneMemberID="firstResponder"/>
