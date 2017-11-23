@@ -14,25 +14,18 @@ class AnswerViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
-    private var _index: Int!
-    var index: Int {
-        get {
-            return _index
-        }
-        set {
-            _index = newValue
-        }
-    }
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let answer = ANSWERS[index]
-        titleLabel.text = answer.title
-        titleLabel.adjustsFontSizeToFitWidth = true
-        descriptionLabel.text = answer.description
-        descriptionLabel.adjustsFontSizeToFitWidth = true
-        imageView.image = UIImage(named: "A\(index)")
+        if let index = index {
+            let answer = ANSWERS[index]
+            titleLabel.text = answer.title
+            titleLabel.adjustsFontSizeToFitWidth = true
+            descriptionLabel.text = answer.description
+            descriptionLabel.adjustsFontSizeToFitWidth = true
+            imageView.image = UIImage(named: "A\(index)")
+        }
     }
 
     override func didReceiveMemoryWarning() {

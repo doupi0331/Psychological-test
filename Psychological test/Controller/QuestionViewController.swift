@@ -13,31 +13,18 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet var selectionButtion: [UIButton]!
-    private var _index: Int!
-    var index: Int {
-        get {
-            return _index
-        }
-        set {
-            _index = newValue
-        }
-    }
-
-    private var _question: Question!
-    var question: Question {
-        get {
-            return _question
-        }
-        set {
-            _question = newValue
-        }
-    }
-    
+    var index: Int?
+    var question: Question?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        question = QUESTIONS[index]
-        updateView(index: index, question: question)
+        if let index = index {
+            question = QUESTIONS[index]
+            
+            if let question = question {
+                updateView(index: index, question: question)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,16 +33,19 @@ class QuestionViewController: UIViewController {
     }
     
     @IBAction func selectionButtionPressed(_ sender: UIButton) {
-        let selection = question.selections[sender.tag]
-        if let nextIndex = selection.nextQuestion {
-            // update the view
-            question = QUESTIONS[nextIndex]
-            updateView(index: nextIndex, question: question)
-            
-        } else if let finalAnswer = selection.finalAnswer {
-            // to the end
-            performSegue(withIdentifier: "AnswerSegue", sender: finalAnswer)
+        if let question = question {
+            let selection = question.selections[sender.tag]
+            if let nextIndex = selection.nextQuestion {
+                // update the view
+                self.question = QUESTIONS[nextIndex]
+                updateView(index: nextIndex, question: QUESTIONS[nextIndex])
+                
+            } else if let finalAnswer = selection.finalAnswer {
+                // to the end
+                performSegue(withIdentifier: "AnswerSegue", sender: finalAnswer)
+            }
         }
+        
         
     }
     
